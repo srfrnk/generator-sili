@@ -32,10 +32,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="package.json" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="31" selection-start="237" selection-end="237" vertical-scroll-proportion="-0.063432835" vertical-offset="204" max-vertical-offset="1088">
+            <state line="22" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.4728192" vertical-offset="0" max-vertical-offset="1139">
               <folding />
             </state>
           </provider>
@@ -53,6 +53,7 @@
       <list>
         <option value="$PROJECT_DIR$/app/index.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -192,6 +193,13 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="31" selection-start="237" selection-end="237" vertical-scroll-proportion="-0.063432835" vertical-offset="204" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="19" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.0" vertical-offset="356" max-vertical-offset="1224">
@@ -199,9 +207,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="31" selection-start="237" selection-end="237" vertical-scroll-proportion="-0.063432835" vertical-offset="204" max-vertical-offset="1088">
+        <state line="22" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.4728192" vertical-offset="0" max-vertical-offset="1139">
           <folding />
         </state>
       </provider>
