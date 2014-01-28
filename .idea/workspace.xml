@@ -23,10 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="19" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.83353734" vertical-offset="356" max-vertical-offset="1224">
+            <state line="61" column="19" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.0" vertical-offset="356" max-vertical-offset="1224">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="0" selection-start="366" selection-end="366" vertical-scroll-proportion="0.31716418" vertical-offset="0" max-vertical-offset="1088">
               <folding />
             </state>
           </provider>
@@ -43,6 +52,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/app/index.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -184,7 +194,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="19" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.83353734" vertical-offset="356" max-vertical-offset="1224">
+        <state line="61" column="19" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.0" vertical-offset="356" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="366" selection-end="366" vertical-scroll-proportion="0.31716418" vertical-offset="0" max-vertical-offset="1088">
           <folding />
         </state>
       </provider>

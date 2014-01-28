@@ -1,7 +1,18 @@
-# generator-srfrnk-webapp [![Build Status](https://secure.travis-ci.org/srfrnk/generator-srfrnk-webapp.png?branch=master)](https://travis-ci.org/srfrnk/generator-srfrnk-webapp)
+# generator-srfrnk-webapp
 
-A generator for [Yeoman](http://yeoman.io).
+A generator for [Yeoman](http://yeoman.io) to generate [WebApp](https://github.com/srfrnk/WebApp).
 
+
+## Installation
+
+* npm install -g yo
+* npm install -g generator-srfrnk-webapp
+* mkdir <your folder goes here>
+* cd <your folder goes here>
+* yo generator-srfrnk-webapp
+* enjoy!
+
+## More docs at [WebApp](https://github.com/srfrnk/WebApp).
 
 ## Getting Started
 
