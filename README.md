@@ -7,8 +7,8 @@ A generator for [Yeoman](http://yeoman.io) to generate [WebApp](https://github.c
 
 * npm install -g yo
 * npm install -g generator-srfrnk-webapp
-* mkdir <your folder goes here>
-* cd <your folder goes here>
+* mkdir "your folder goes here"
+* cd "your folder goes here"
 * yo generator-srfrnk-webapp
 * enjoy!
 
