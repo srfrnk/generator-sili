@@ -36,7 +36,6 @@ util.inherits(SrfrnkWebappGenerator, yeoman.generators.Base);
  cb();
  }.bind(this));
  }*/
-;
 
 /*
  SrfrnkWebappGenerator.prototype.app = function app() {
@@ -56,12 +55,11 @@ util.inherits(SrfrnkWebappGenerator, yeoman.generators.Base);
  */
 
 SrfrnkWebappGenerator.prototype.cloneGit = function cloneGit() {
+	console.log("Getting latest codebase from github...");
 	var cb = this.async();
-	gift.clone("https://github.com/srfrnk/WebApp.git", "", function () {
-		fs.copyRecursive(this.destinationRoot() + "/WebApp", this.destinationRoot(), function () {
-			fs.rmrf(this.destinationRoot() + "/WebApp", function () {
-				cb();
-			}.bind(this));
-		}.bind(this));
-	}.bind(this));
+
+	this.remote('srfrnk', 'WebApp',"master", function (err, remote) {
+		remote.directory(".",".");
+		cb();
+	}.bind(this),true);
 };
