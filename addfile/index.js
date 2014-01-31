@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var rimraf = require('rimraf');
 var url = require('url');
+var changeCase = require('change-case');
 
 var AddfileGenerator = module.exports = function AddfileGenerator(args, options, config) {
 	yeoman.generators.Base.apply(this, arguments);
@@ -110,6 +111,13 @@ AddfileGenerator.prototype.setParams = function setParams() {
 	this.name = path.basename(this.name, path.extname(this.name));
 	//this.name = this._.slugify(this.name);
 	this.fullPath = path.join(this.path, this.name);
+
+	var name=changeCase.sentenceCase(this.name);
+	this.nameLower=changeCase.lowerCase(this.name);
+	this.nameUpper=changeCase.upperCase(this.name);
+	this.nameCamel=changeCase.camelCase(name);
+	this.nameCapital=changeCase.pascalCase(name);
+	this.nameDash=changeCase.paramCase(name);
 };
 
 AddfileGenerator.prototype.addFile = function addFile() {
@@ -164,8 +172,16 @@ AddfileGenerator.prototype._actions = {
 			cb();
 		}.bind(this));
 	},
-	"server-view":function(cb) {},
-	"server-model":function(cb) {},
+	"server-view":function(cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/views/_template.ejs", "views/" + this.fullPath + ".ejs", function () {
+			cb();
+		}.bind(this));
+	},
+	"server-model":function(cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/models/_template.js", "models/" + this.fullPath + ".js", function () {
+			cb();
+		}.bind(this));
+	},
 	"client-state":function(cb) {},
 	"client-controller":function(cb) {},
 	"client-service":function(cb) {},
