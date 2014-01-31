@@ -11,68 +11,166 @@ var AddfileGenerator = module.exports = function AddfileGenerator(args, options,
 	this.argument('side', { type: String, required: false });
 	this.argument('spec', { type: String, required: false });
 	this.argument('name', { type: String, required: false });
+
+	if (this.side == 's') {
+		this.side = 'server';
+	}
+	else if (this.side == 'c') {
+		this.side = 'client';
+	}
 };
 
 util.inherits(AddfileGenerator, yeoman.generators.Base);
 
-AddfileGenerator.prototype.getSpec = function getSpec() {
-	/*
-	 if (!this.spec) {
-	 var cb = this.async();
+AddfileGenerator.prototype.getSide = function getSide() {
+	if (!this.side) {
+		var cb = this.async();
 
-	 var prompts = [
-	 {
-	 type: 'confirm',
-	 name: 'someOption',
-	 message: 'Would you like to enable this option?',
-	 default: true
-	 }
-	 ];
+		var prompts = [
+			{
+				type: 'list',
+				name: 'side',
+				message: 'Server or Client side?',
+				default: 'server',
+				choices: [
+					{value: 'server', name: 'Server'},
+					{value: 'client', name: 'Client'}
+				]
+			}
+		];
 
-	 this.prompt(prompts, function (props) {
-	 this.someOption = props.someOption;
-
-	 cb();
-	 }.bind(this));
-	 }
-	 */
-
-	this.name = this._.slugify(this.name);
+		this.prompt(prompts, function (props) {
+			this.side = props.side;
+			cb();
+		}.bind(this));
+	}
 }
 
+AddfileGenerator.prototype.getSpec = function getSpec() {
+	if (!this.spec) {
+		var cb = this.async();
+
+		var prompts = [
+			{
+				type: 'list',
+				name: 'spec',
+				message: 'File type:',
+				choices: this.side == 'server' ?
+					[
+						{ value: 'route', name: 'Route'},
+						{ value: 'view', name: 'View'},
+						{ value: 'model', name: 'Model'}
+					] :
+					[
+						{ value: 'state', name: 'State'},
+						{ value: 'controller', name: 'Controller'},
+						{ value: 'service', name: 'Service'},
+						{ value: 'directive', name: 'Directive'},
+						{ value: 'filter', name: 'Filter'},
+						{ value: 'i18n', name: 'Internationalization'},
+						{ value: 'stylus', name: 'Stylus'}
+					]
+			}
+		];
+		this.prompt(prompts, function (props) {
+			this.spec = props.spec;
+			cb();
+		}.bind(this));
+	}
+}
+
+AddfileGenerator.prototype.getName = function getName() {
+	if (!this.name) {
+		var cb = this.async();
+
+		var prompts = [
+			{
+				type: 'input',
+				name: 'name',
+				message: 'New file name (Enter for auto name):',
+				default: ''
+			}
+		];
+
+		this.prompt(prompts, function (props) {
+			this.name = props.name;
+			cb();
+		}.bind(this));
+	}
+}
+
+AddfileGenerator.prototype.setParams = function setParams() {
+	this.action = this.side + '-' + this.spec;
+
+	if (this.name === "") {
+		this.name = "new-" + this.spec;
+	}
+
+	this.path = path.dirname(this.name);
+	this.name = path.basename(this.name, path.extname(this.name));
+	//this.name = this._.slugify(this.name);
+	this.fullPath = path.join(this.path, this.name);
+};
+
 AddfileGenerator.prototype.addFile = function addFile() {
-	console.log('Adding ', this.side, 'file ', this.spec, ' of type:', this.name, '.');
-	var action = this.side + '-' + this.spec;
+	console.log('Adding', this.side, this.spec, this.fullPath);
 	var cb = this.async();
-	this._actions[action].call(this, cb);
+	this._actions[this.action].call(this, function () {
+		cb();
+	});
 };
 
 AddfileGenerator.prototype._getFile = function _getFile(sourceUrl, destination, cb) {
-	console.log('Getting latest ', destination, 'from github...');
+	console.log('Getting latest ', sourceUrl, 'from github...');
 	var pathname = url.parse(sourceUrl).pathname;
 	var fileName = path.basename(pathname);
 	var cache = path.join(this.cacheRoot(), pathname);
 	rimraf(cache, function (err) {
 		if (err) {
 			console.log(err);
-			cb(err);
+			if (!!cb) cb(err);
 		}
 		else {
 			this.fetch(sourceUrl, cache, function () {
 				console.log('Building ', destination, '...');
 				var body = this.engine(this.read(path.join(cache, fileName)), this);
 				this.write(destination, body);
-				cb();
+				if (!!cb) cb();
 			}.bind(this));
 		}
 	}.bind(this));
 };
 
+AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
+	var regexp = {
+		".js": new RegExp("/\\*" + actionId + ":(.*?)\\*/", "mg"),
+		".styl": new RegExp("", "mg")
+	};
+	console.log('Updating ', filepath, "...");
+	var ext = path.extname(filepath);
+	var content = this.readFileAsString(filepath);
+	var newContent = content.replace(regexp[ext], function (match, capture, idx, all) {
+		var newContent = this.engine(capture, this);
+		return newContent + match;
+	}.bind(this));
+
+	this.write(filepath, newContent);
+};
+
 AddfileGenerator.prototype._actions = {
 	"server-route": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/routes/_template.js", "routes/" + this.name + ".js", function () {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/routes/_template.js", "routes/" + this.fullPath + ".js", function () {
+			this._updateFile("app.js", this.action);
 			cb();
-			console.log("Done!");
-		});
-	}
+		}.bind(this));
+	},
+	"server-view":function(cb) {},
+	"server-model":function(cb) {},
+	"client-state":function(cb) {},
+	"client-controller":function(cb) {},
+	"client-service":function(cb) {},
+	"client-directive":function(cb) {},
+	"client-filter":function(cb) {},
+	"client-i18n":function(cb) {},
+	"client-stylus":function(cb) {}
 };
