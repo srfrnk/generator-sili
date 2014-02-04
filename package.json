@@ -1,66 +1,63 @@
 {
-	"name": "generator-srfrnk-webapp",
-	"version": "0.0.3",
-	"description": "A generator for Yeoman",
-	"keywords": [
-		"yeoman-generator",
-		"NodeJS",
-		"ExpressJS",
-		"EJS",
-		"Stylus",
-		"RequireJS",
-		"MongoDB",
-		"Mongoose",
-		"Passport",
-		"LinqJS",
-		"Q",
-		"NPM",
-		"AngularJS",
-		"Angular UI Routing",
-		"Angular UI Bootstrap",
-		"Angular translate",
-		"Angular Modal Service",
-		"JQuery",
-		"Bower"
-	],
-	"homepage": "https://github.com/srfrnk/generator-srfrnk-webapp",
-	"bugs": "https://github.com/srfrnk/generator-srfrnk-webapp/issues",
-	"author": {
-		"name": "",
-		"email": "",
-		"url": "https://github.com/srfrnk"
-	},
-	"main": "app/index.js",
-	"bin": {
-		"addfile": "cmd.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/srfrnk/generator-srfrnk-webapp.git"
-	},
-	"scripts": {
-		"test": "mocha"
-	},
-	"dependencies": {
-		"yeoman-generator": "~0.14.0",
-		"gift": "~0.1.1",
-		"fs.extra": "~1.2.1",
-		"rimraf": "~2.2.6",
-		"change-case": "~1.0.4"
-	},
-	"devDependencies": {
-		"mocha": "~1.14.0"
-	},
-	"peerDependencies": {
-		"yo": ">=1.0.0"
-	},
-	"engines": {
-		"node": ">=0.8.0",
-		"npm": ">=1.2.10"
-	},
-	"licenses": [
-		{
-			"type": "MIT"
-		}
-	]
+  "name": "generator-srfrnk-webapp",
+  "version": "0.0.3",
+  "description": "A generator for Yeoman",
+  "keywords": [
+    "yeoman-generator",
+    "NodeJS",
+    "ExpressJS",
+    "EJS",
+    "Stylus",
+    "RequireJS",
+    "MongoDB",
+    "Mongoose",
+    "Passport",
+    "LinqJS",
+    "Q",
+    "NPM",
+    "AngularJS",
+    "Angular UI Routing",
+    "Angular UI Bootstrap",
+    "Angular translate",
+    "Angular Modal Service",
+    "JQuery",
+    "Bower"
+  ],
+  "homepage": "https://github.com/srfrnk/generator-srfrnk-webapp",
+  "bugs": "https://github.com/srfrnk/generator-srfrnk-webapp/issues",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": "https://github.com/srfrnk"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/srfrnk/generator-srfrnk-webapp.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.14.0",
+    "gift": "~0.1.1",
+    "fs.extra": "~1.2.1",
+    "rimraf": "~2.2.6",
+    "change-case": "~1.0.4"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
 }

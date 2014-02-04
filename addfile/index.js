@@ -112,12 +112,12 @@ AddfileGenerator.prototype.setParams = function setParams() {
 	//this.name = this._.slugify(this.name);
 	this.fullPath = path.join(this.path, this.name);
 
-	var name=changeCase.sentenceCase(this.name);
-	this.nameLower=changeCase.lowerCase(this.name);
-	this.nameUpper=changeCase.upperCase(this.name);
-	this.nameCamel=changeCase.camelCase(name);
-	this.nameCapital=changeCase.pascalCase(name);
-	this.nameDash=changeCase.paramCase(name);
+	var name = changeCase.sentenceCase(this.name);
+	this.nameLower = changeCase.lowerCase(this.name);
+	this.nameUpper = changeCase.upperCase(this.name);
+	this.nameCamel = changeCase.camelCase(name);
+	this.nameCapital = changeCase.pascalCase(name);
+	this.nameDash = changeCase.paramCase(name);
 };
 
 AddfileGenerator.prototype.addFile = function addFile() {
@@ -172,21 +172,64 @@ AddfileGenerator.prototype._actions = {
 			cb();
 		}.bind(this));
 	},
-	"server-view":function(cb) {
+	"server-view": function (cb) {
 		this._getFile("https://raw.github.com/srfrnk/WebApp/master/views/_template.ejs", "views/" + this.fullPath + ".ejs", function () {
 			cb();
 		}.bind(this));
 	},
-	"server-model":function(cb) {
+	"server-model": function (cb) {
 		this._getFile("https://raw.github.com/srfrnk/WebApp/master/models/_template.js", "models/" + this.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
-	"client-state":function(cb) {},
-	"client-controller":function(cb) {},
-	"client-service":function(cb) {},
-	"client-directive":function(cb) {},
-	"client-filter":function(cb) {},
-	"client-i18n":function(cb) {},
-	"client-stylus":function(cb) {}
+	"client-state": function (cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/states/_template.js", "public/scripts/states/" + this.fullPath + ".js", function () {
+			cb();
+		}.bind(this));
+	},
+	"client-controller": function (cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/controllers/_template.js", "public/scripts/controllers/" + this.fullPath + ".js", function () {
+			cb();
+		}.bind(this));
+	},
+	"client-service": function (cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/services/_template.js", "public/scripts/services/" + this.fullPath + ".js", function () {
+			cb();
+		}.bind(this));
+	},
+	"client-directive": function (cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/directives/_template.js", "public/scripts/directives/" + this.fullPath + ".js", function () {
+			cb();
+		}.bind(this));
+	},
+	"client-filter": function (cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/filters/_template.js", "public/scripts/filters/" + this.fullPath + ".js", function () {
+			cb();
+		}.bind(this));
+	},
+	"client-i18n": function (cb) {
+		var prompts = [
+			{
+				type: 'list',
+				name: 'language',
+				message: 'Select language:',
+				choices: [
+					{ value: 'en-US', name: 'English US'},
+					{ value: 'en-UK', name: 'English UK'},
+					{ value: 'he-IL', name: 'Hebrew'}
+				]
+			}
+		];
+		this.prompt(prompts, function (props) {
+			this.language = props.language;
+			this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/i18n/_template.json", "public/scripts/i18n/" + this.language + "/" + this.fullPath + ".json", function () {
+				cb();
+			}.bind(this));
+		}.bind(this));
+	},
+	"client-stylus": function (cb) {
+		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/stylesheets/_template.styl", "public/stylesheets/" + this.fullPath + ".styl", function () {
+			cb();
+		}.bind(this));
+	}
 };
