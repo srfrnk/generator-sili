@@ -110,7 +110,6 @@ AddfileGenerator.prototype.setParams = function setParams() {
 	this.path = path.dirname(this.name);
 	this.name = path.basename(this.name, path.extname(this.name));
 	//this.name = this._.slugify(this.name);
-	this.fullPath = path.join(this.path, this.name);
 
 	var name = changeCase.sentenceCase(this.name);
 	this.nameLower = changeCase.lowerCase(this.name);
@@ -118,6 +117,8 @@ AddfileGenerator.prototype.setParams = function setParams() {
 	this.nameCamel = changeCase.camelCase(name);
 	this.nameCapital = changeCase.pascalCase(name);
 	this.nameDash = changeCase.paramCase(name);
+
+	this.fullPath = path.join(this.path, this.nameCamel);
 };
 
 AddfileGenerator.prototype.addFile = function addFile() {
@@ -229,6 +230,7 @@ AddfileGenerator.prototype._actions = {
 	},
 	"client-stylus": function (cb) {
 		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/stylesheets/_template.styl", "public/stylesheets/" + this.fullPath + ".styl", function () {
+			this._updateFile("views/index.ejs", this.action);
 			cb();
 		}.bind(this));
 	}
