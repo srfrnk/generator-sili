@@ -19,7 +19,7 @@ After all is installed you can use Yo to create a skeleton web-app this way:
 
 Use the skeleton to build your App.
 When you need to add a new file use the following command (from within the app folder ;) :
-* yo srfrnk-webapp:add file
+* yo srfrnk-webapp:addfile
 
 It'll ask you all bunch of questions then make the changes - and you get a new file!
 
