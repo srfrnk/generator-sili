@@ -224,7 +224,7 @@ AddfileGenerator.prototype._actions = {
 		];
 		this.prompt(prompts, function (props) {
 			this.language = props.language;
-			this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/i18n/_template.json", "public/scripts/i18n/" + this.language + "/" + this.fullPath + ".json", function () {
+			this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/i18n/_template.json", "public/i18n/" + this.language + "/" + this.fullPath + ".json", function () {
 				cb();
 			}.bind(this));
 		}.bind(this));
