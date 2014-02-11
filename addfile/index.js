@@ -159,6 +159,7 @@ AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
 	var ext = path.extname(filepath);
 	var content = this.readFileAsString(filepath);
 	var newContent = content.replace(regexp[ext], function (match, capture, idx, all) {
+		capture=capture.replace("[[%","<%");
 		var newContent = this.engine(capture, this);
 		return newContent + match;
 	}.bind(this));
