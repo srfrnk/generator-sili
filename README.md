@@ -1,14 +1,15 @@
 # generator-srfrnk-webapp
 
-A generator for [Yeoman](http://yeoman.io) to generate [WebApp](https://github.com/srfrnk/WebApp).
+A generator for [Yeoman](http://yeoman.io) to generate [WebApp](https://github.com/srfrnk/generator-srfrnk-webapp/blob/master/app/templates/README.md):
 
+A single-click-to-get-started - skeleton web app with all you need... NodeJS , ExpressJS, AngularJS , MongoDB and all the other goodies...
 
 ## Installation
 
 * npm install -g yo
 * npm install -g generator-srfrnk-webapp
 
-## More docs at [WebApp](https://github.com/srfrnk/WebApp).
+## Details can be found on [WebApp](https://github.com/srfrnk/generator-srfrnk-webapp/blob/master/app/templates/README.md).
 
 ## Getting Started
 

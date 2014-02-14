@@ -129,25 +129,11 @@ AddfileGenerator.prototype.addFile = function addFile() {
 	});
 };
 
-AddfileGenerator.prototype._getFile = function _getFile(sourceUrl, destination, cb) {
-	console.log('Getting latest ', sourceUrl, 'from github...');
-	var pathname = url.parse(sourceUrl).pathname;
-	var fileName = path.basename(pathname);
-	var cache = path.join(this.cacheRoot(), pathname);
-	rimraf(cache, function (err) {
-		if (err) {
-			console.log(err);
-			if (!!cb) cb(err);
-		}
-		else {
-			this.fetch(sourceUrl, cache, function () {
-				console.log('Building ', destination, '...');
-				var body = this.engine(this.read(path.join(cache, fileName)), this);
-				this.write(destination, body);
-				if (!!cb) cb();
-			}.bind(this));
-		}
-	}.bind(this));
+AddfileGenerator.prototype._getFile = function _getFile(src, destination, cb) {
+	console.log('Building ', destination, '...');
+	var body = this.engine(this.read(src), this);
+	this.write(destination, body);
+	if (!!cb) cb();
 };
 
 AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
@@ -159,7 +145,7 @@ AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
 	var ext = path.extname(filepath);
 	var content = this.readFileAsString(filepath);
 	var newContent = content.replace(regexp[ext], function (match, capture, idx, all) {
-		capture=capture.replace("[[%","<%");
+		capture = capture.replace("[[%", "<%");
 		var newContent = this.engine(capture, this);
 		return newContent + match;
 	}.bind(this));
@@ -169,43 +155,46 @@ AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
 
 AddfileGenerator.prototype._actions = {
 	"server-route": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/routes/_template.js", "routes/" + this.fullPath + ".js", function () {
+		this._getFile("routes/route.js", "routes/" + this.fullPath + ".js", function () {
 			this._updateFile("app.js", this.action);
 			cb();
 		}.bind(this));
 	},
 	"server-view": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/views/_template.ejs", "views/" + this.fullPath + ".ejs", function () {
+		this._getFile("views/view.ejs", "views/" + this.fullPath + ".ejs", function () {
 			cb();
 		}.bind(this));
 	},
 	"server-model": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/models/_template.js", "models/" + this.fullPath + ".js", function () {
+		this._getFile("models/model.js", "models/" + this.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-state": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/states/_template.js", "public/scripts/states/" + this.fullPath + ".js", function () {
-			cb();
+		this._getFile("public/scripts/states/state.js", "public/scripts/states/" + this.fullPath + ".js", function () {
+			this._updateFile("public/scripts/config.js", this.action);
+			this._getFile("public/scripts/controllers/controller.js", "public/scripts/controllers/" + this.fullPath + ".js", function () {
+				cb();
+			}.bind(this));
 		}.bind(this));
 	},
 	"client-controller": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/controllers/_template.js", "public/scripts/controllers/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/controllers/controller.js", "public/scripts/controllers/" + this.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-service": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/services/_template.js", "public/scripts/services/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/services/service.js", "public/scripts/services/" + this.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-directive": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/directives/_template.js", "public/scripts/directives/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/directives/directive.js", "public/scripts/directives/" + this.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-filter": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/scripts/filters/_template.js", "public/scripts/filters/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/filters/filter.js", "public/scripts/filters/" + this.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
@@ -224,13 +213,13 @@ AddfileGenerator.prototype._actions = {
 		];
 		this.prompt(prompts, function (props) {
 			this.language = props.language;
-			this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/i18n/_template.json", "public/i18n/" + this.language + "/" + this.fullPath + ".json", function () {
+			this._getFile("public/i18n/i18n.json", "public/i18n/" + this.language + "/" + this.fullPath + ".json", function () {
 				cb();
 			}.bind(this));
 		}.bind(this));
 	},
 	"client-stylus": function (cb) {
-		this._getFile("https://raw.github.com/srfrnk/WebApp/master/public/stylesheets/_template.styl", "public/stylesheets/" + this.fullPath + ".styl", function () {
+		this._getFile("public/stylesheets/stylesheet.styl", "public/stylesheets/" + this.fullPath + ".styl", function () {
 			this._updateFile("views/index.ejs", this.action);
 			cb();
 		}.bind(this));
