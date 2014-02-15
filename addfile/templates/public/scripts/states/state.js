@@ -6,7 +6,7 @@ define("states/<%=nameCamel%>", ["app", "controllers/<%=nameCamel%>"], function 
 			url: "/{someProp}{anotherProp:(?:/[^/]+)?}",
 			//  template: "<div></div>",
 			//  templateProvider: function ($stateParams) { },
-			templateUrl: "/view/<%=nameDash%>",
+			templateUrl: "/"+__webApp_ResourceVersion+"/view/<%=nameDash%>",
 			controller: "<%=nameCamel%>"/*,*/
 //			views: {
 //				"view1@": {

@@ -28,12 +28,14 @@ Featured Goodies (So far....)
 * AngularJS
 * Angular UI Routing
 * Angular UI Bootstrap
-* Angular translate - i18n! and l10n :)
+* Angular translate (lazy partial loading!) - i18n! and l10n :)
 * Angular Modal Service - if just need simple modals...
 * JQuery - well that's just basic.
 * LinqJS client side - for even better coding... client side...
 * Template files for angular components: States, Controllers, Services, Filters, Directives
 * Bower managed client modules
+* Google Charts
+* Client side version using package version... disable caching issues after version updates.
 
 Will add more...
 

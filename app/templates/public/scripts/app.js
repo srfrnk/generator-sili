@@ -1,9 +1,9 @@
 define("app", [], function () {
-	var app = angular.module("app", ["ngResource", "ui.router", "ui.bootstrap", "ui.router", "pascalprecht.translate","fundoo.services"]);
+	var app = angular.module("app", ["ngResource", "ui.router", "ui.bootstrap", "ui.router", "pascalprecht.translate","fundoo.services","googlechart"]);
 	app.config(["$locationProvider","$translateProvider","$translatePartialLoaderProvider",function ($locationProvider,$translateProvider,$translatePartialLoaderProvider) {
 		$locationProvider.html5Mode(true);
 		$translateProvider.useLoader('$translatePartialLoader', {
-			urlTemplate: '/i18n/{lang}/{part}.json'
+			urlTemplate: "/"+__webApp_ResourceVersion+"/i18n/{lang}/{part}.json"
 		});
 		$translateProvider.preferredLanguage('en-US');
 	}]);

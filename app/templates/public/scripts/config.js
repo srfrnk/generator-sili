@@ -1,8 +1,8 @@
 require.config({
-	baseUrl: "/scripts",
+	baseUrl: "/"+__webApp_ResourceVersion+"/scripts",
 	deps: ["bootstrap"],
 	paths: {
-		'domReady': '/requirejs-domready/domReady'
+		'domReady': "/"+__webApp_ResourceVersion+"/requirejs-domready/domReady"
 	}
 });
 define("bootstrap", [
