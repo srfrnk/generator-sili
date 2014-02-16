@@ -27,7 +27,7 @@ app.set('packageJson',packageJson);
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('YourSessionKey'));
 	app.use(express.session());
-	app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+	app.use("/"+packageJson.version,require('stylus').middleware(path.join(__dirname, 'public')));
 	app.use("/"+packageJson.version,express.static(path.join(__dirname, 'public')));
 	app.use("/"+packageJson.version,express.static(path.join(__dirname, 'bower_components')));
 	app.use("/"+packageJson.version,express.static(path.join(__dirname, 'components')));
