@@ -36,6 +36,7 @@ Featured Goodies (So far....)
 * Bower managed client modules
 * Google Charts
 * Client side version using package version... disable caching issues after version updates.
+* Jeet.GS [http://jeet.gs/] - To be responsive!
 
 Will add more...
 

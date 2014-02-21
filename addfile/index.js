@@ -63,6 +63,7 @@ AddfileGenerator.prototype.getSpec = function getSpec() {
 						{ value: 'model', name: 'Model'}
 					] :
 					[
+						{ value: 'full-stack', name: 'Full Stack: State -> Controller -> View -> Stylesheet'},
 						{ value: 'state', name: 'State'},
 						{ value: 'controller', name: 'Controller'},
 						{ value: 'service', name: 'Service'},
@@ -88,8 +89,8 @@ AddfileGenerator.prototype.getName = function getName() {
 			{
 				type: 'input',
 				name: 'name',
-				message: 'New file name (Enter for auto name):',
-				default: ''
+				message: 'New file name:',
+				default: 'new'
 			}
 		];
 
@@ -103,13 +104,8 @@ AddfileGenerator.prototype.getName = function getName() {
 AddfileGenerator.prototype.setParams = function setParams() {
 	this.action = this.side + '-' + this.spec;
 
-	if (this.name === "") {
-		this.name = "new-" + this.spec;
-	}
-
 	this.path = path.dirname(this.name);
 	this.name = path.basename(this.name, path.extname(this.name));
-	//this.name = this._.slugify(this.name);
 
 	var name = changeCase.sentenceCase(this.name);
 	this.nameLower = changeCase.lowerCase(this.name);
@@ -122,11 +118,17 @@ AddfileGenerator.prototype.setParams = function setParams() {
 };
 
 AddfileGenerator.prototype.addFile = function addFile() {
-	console.log('Adding', this.side, this.spec, this.fullPath);
 	var cb = this.async();
-	this._actions[this.action].call(this, function () {
+	this._runAction(this.action, cb);
+};
+
+AddfileGenerator.prototype._runAction = function _runAction(action,cb) {
+	var prevAction=this.action;
+	this.action=action;
+	this._actions[action].call(this, function () {
+		this.action=prevAction;
 		cb();
-	});
+	}.bind(this));
 };
 
 AddfileGenerator.prototype._getFile = function _getFile(src, destination, cb) {
@@ -170,12 +172,24 @@ AddfileGenerator.prototype._actions = {
 			cb();
 		}.bind(this));
 	},
+	"client-full-stack": function (cb) {
+		this._runAction("client-state", function () {
+			this._runAction("client-controller", function () {
+				this._runAction("server-view", function () {
+					this._runAction("client-stylus", function () {
+						this.language="en-US";
+						this._runAction("client-i18n", function () {
+							cb();
+						}.bind(this));
+					}.bind(this));
+				}.bind(this));
+			}.bind(this));
+		}.bind(this));
+	},
 	"client-state": function (cb) {
 		this._getFile("public/scripts/states/state.js", "public/scripts/states/" + this.fullPath + ".js", function () {
 			this._updateFile("public/scripts/config.js", this.action);
-			this._getFile("public/scripts/controllers/controller.js", "public/scripts/controllers/" + this.fullPath + ".js", function () {
-				cb();
-			}.bind(this));
+			cb();
 		}.bind(this));
 	},
 	"client-controller": function (cb) {
@@ -211,12 +225,21 @@ AddfileGenerator.prototype._actions = {
 				]
 			}
 		];
-		this.prompt(prompts, function (props) {
-			this.language = props.language;
+		var createFile = function() {
 			this._getFile("public/i18n/i18n.json", "public/i18n/" + this.language + "/" + this.fullPath + ".json", function () {
 				cb();
+			}.bind(this))
+		}.bind(this);
+
+		if (!this.language) {
+			this.prompt(prompts, function (props) {
+				this.language = props.language;
+				createFile();
 			}.bind(this));
-		}.bind(this));
+		}
+		else {
+			createFile();
+		}
 	},
 	"client-stylus": function (cb) {
 		this._getFile("public/stylesheets/stylesheet.styl", "public/stylesheets/" + this.fullPath + ".styl", function () {
