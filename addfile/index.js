@@ -141,14 +141,16 @@ AddfileGenerator.prototype._getFile = function _getFile(src, destination, cb) {
 AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
 	var regexp = {
 		".js": new RegExp("/\\*" + actionId + ":(.*?)\\*/", "mg"),
-		".styl": new RegExp("", "mg")
+		".styl": new RegExp("", "mg"),
+		".ejs": new RegExp("<!--" + actionId + ":(.*?)-->", "mg")
 	};
 	console.log('Updating ', filepath, "...");
 	var ext = path.extname(filepath);
 	var content = this.readFileAsString(filepath);
 	var newContent = content.replace(regexp[ext], function (match, capture, idx, all) {
-		capture = capture.replace("[[%", "<%");
+		capture = capture.replace(/\[\[%/g, "<%");
 		var newContent = this.engine(capture, this);
+		newContent=newContent.replace(/<\[%/g, "<%");
 		return newContent + match;
 	}.bind(this));
 
