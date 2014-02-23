@@ -26,6 +26,7 @@
 		"linqjs-amd": "~0.1.0",
 		"angularjs-modal-service": "*",
 		"angular-google-chart": "~0.0.8",
-		"angular-translate-loader-partial": "~0.2.0"
+		"angular-translate-loader-partial": "~0.2.0",
+		"ng-socket": "~0.1.1"
 	}
 }

@@ -15,6 +15,7 @@ Featured Goodies (So far....)
 
 * NodeJs server side
 * ExpressJS web-server
+* ExpressIO - for socket-io realtime messaging
 * EJS server side templates
 * Stylus server side CSS engine
 * RequireJS server side!
@@ -37,6 +38,7 @@ Featured Goodies (So far....)
 * Google Charts
 * Client side version using package version... disable caching issues after version updates.
 * Jeet.GS [http://jeet.gs/] - To be responsive!
+* ng-socket - for socket-io realtime messaging. (client side)
 
 Will add more...
 
