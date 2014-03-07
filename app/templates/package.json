@@ -17,7 +17,8 @@
 		"mongoose": "~3.8.5",
 		"linq": "~3.0.4-beta",
 		"q": "~1.0.0",
-		"jeet": "~5.0.2"
+		"jeet": "~5.0.2",
+		"express.io": "~1.1.13"
 	},
 	"engines": {
 		"node": "1.10.x"

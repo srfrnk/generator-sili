@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/<%=resourceVersion%>/stylesheets/main.css"/>
     <!--client-stylus:<link rel="stylesheet" href="/<[%=resourceVersion%>/stylesheets/[[%=nameCamel%>.css"/>[[%='\n\t'%>-->
 
+	<!-- Needs to be load before RequireJS (clashes!!!): -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	
     <script type="text/javascript" src="/<%=resourceVersion%>/requirejs/require.js"></script>
     <script type="text/javascript" src="/<%=resourceVersion%>/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/<%=resourceVersion%>/angular-seed/app/lib/angular/angular.min.js"></script>
@@ -19,6 +22,7 @@
     <script type="text/javascript" src="/<%=resourceVersion%>/linqjs-amd/linq.js"></script>
     <script type="text/javascript" src="/<%=resourceVersion%>/angularjs-modal-service/src/createDialog.js"></script>
     <script type="text/javascript" src="/<%=resourceVersion%>/angular-google-chart/ng-google-chart.js"></script>
+	<script type="text/javascript" src="/<%=resourceVersion%>/ng-socket/ngSocket.js"></script>
 
     <script type="application/javascript">
         var __webApp_ResourceVersion="<%=resourceVersion%>";
