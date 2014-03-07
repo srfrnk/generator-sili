@@ -37,7 +37,6 @@
         <option value="$PROJECT_DIR$/cli" />
         <option value="$PROJECT_DIR$/cli.js" />
         <option value="$PROJECT_DIR$/../../Private Projects/WebApp/views/index.ejs" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/app/templates/_package.json" />
         <option value="$PROJECT_DIR$/app/templates/bower.json" />
         <option value="$PROJECT_DIR$/app/templates/views/index.ejs" />
@@ -48,6 +47,7 @@
         <option value="$PROJECT_DIR$/app/templates/public/scripts/config.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/addfile/index.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -372,11 +372,6 @@
         <state line="73" column="17" selection-start="2080" selection-end="2080" vertical-scroll-proportion="0.0" vertical-offset="889" max-vertical-offset="1428" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="6" selection-start="1096" selection-end="1096" vertical-scroll-proportion="1.2565217" vertical-offset="0" max-vertical-offset="1173" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="27" selection-start="29" selection-end="29" vertical-scroll-proportion="0.017580144" vertical-offset="0" max-vertical-offset="967" />
@@ -485,6 +480,13 @@
     <entry file="file://$PROJECT_DIR$/addfile/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="11" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.5321229" vertical-offset="1591" max-vertical-offset="3961" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="20" selection-start="59" selection-end="59" vertical-scroll-proportion="0.07188161" vertical-offset="0" max-vertical-offset="1173">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
