@@ -23,7 +23,7 @@
 	"engines": {
 		"node": "1.10.x"
 	},
-	"srfrnkWebApp": {
+	"Sili": {
 		"initVersion": "<%=webAppVersion%>",
 		"currentVersion": "<%=webAppVersion%>"
 	}

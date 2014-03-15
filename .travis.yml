@@ -4,5 +4,5 @@ node_js:
   - '0.10'
 before_install:
   - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-srfrnk-webapp' ]; then cd .. && eval "mv $currentfolder generator-srfrnk-webapp" && cd generator-srfrnk-webapp; fi
+  - if [ "$currentfolder" != 'generator-sili' ]; then cd .. && eval "mv $currentfolder generator-sili" && cd generator-sili; fi
 

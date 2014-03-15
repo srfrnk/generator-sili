@@ -6,7 +6,7 @@ var yeoman = require('yeoman-generator');
 //var gift = require('gift');
 var packageJson = require('../package.json');
 
-var SrfrnkWebappGenerator = module.exports = function SrfrnkWebappGenerator(args, options, config) {
+var SiLiGenerator = module.exports = function SiLiGenerator(args, options, config) {
 	yeoman.generators.Base.apply(this, arguments);
 
 	this.on('end', function () {
@@ -14,9 +14,9 @@ var SrfrnkWebappGenerator = module.exports = function SrfrnkWebappGenerator(args
 	});
 };
 
-util.inherits(SrfrnkWebappGenerator, yeoman.generators.Base);
+util.inherits(SiLiGenerator, yeoman.generators.Base);
 
-SrfrnkWebappGenerator.prototype.app = function app() {
+SiLiGenerator.prototype.app = function app() {
 	this.projectName=path.basename(this.dest._base);
 	this.webAppVersion=packageJson.version;
 	this.directory("", "");

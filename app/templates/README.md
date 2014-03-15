@@ -1,5 +1,5 @@
-WebApp 
-======
+SiLi WebApp
+===========
 
 A single-click-to-get-started - skeleton web app with all you need... NodeJS , ExpressJS, AngularJS , MongoDB and all the other goodies...
 

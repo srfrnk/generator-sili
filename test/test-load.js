@@ -3,7 +3,7 @@
 
 var assert = require('assert');
 
-describe('srfrnk-webapp generator', function () {
+describe('sili generator', function () {
     it('can be imported without blowing up', function () {
         var app = require('../app');
         assert(app !== undefined);

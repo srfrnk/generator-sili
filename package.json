@@ -1,6 +1,6 @@
 {
-  "name": "generator-srfrnk-webapp",
-  "version": "0.0.13",
+  "name": "generator-sili",
+  "version": "0.0.16",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator",
@@ -23,8 +23,8 @@
     "JQuery",
     "Bower"
   ],
-  "homepage": "https://github.com/srfrnk/generator-srfrnk-webapp",
-  "bugs": "https://github.com/srfrnk/generator-srfrnk-webapp/issues",
+  "homepage": "https://github.com/srfrnk/generator-sili",
+  "bugs": "https://github.com/srfrnk/generator-sili/issues",
   "author": {
     "name": "",
     "email": "",
@@ -33,7 +33,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/srfrnk/generator-srfrnk-webapp.git"
+    "url": "git://github.com/srfrnk/generator-sili.git"
   },
   "scripts": {
     "test": "mocha"
