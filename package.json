@@ -1,7 +1,7 @@
 {
   "name": "generator-sili",
-  "version": "0.0.17",
-  "description": "A generator for Yeoman",
+  "version": "0.0.18",
+  "description": "Yeoman generator - Silver Lining (SiLi) - A single-click-to-get-started - skeleton web app with all you need...",
   "keywords": [
     "yeoman-generator",
     "NodeJS",
