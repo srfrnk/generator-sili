@@ -2,7 +2,7 @@ var requirejs = require("requirejs");
 
 requirejs.config({ deps: ["app"]})
 
-requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/data"/*server-route:,"routes/<%=nameCamel%>"*/, "models/mongooseHelper"], function (indexRoute, loginRoute, viewRoute, dataRoute/*server-route:,"<%=nameCamel%>Route"*/) {
+requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/data"/*server-route:,"routes/<%=nameCamel%>"*/, "models/mongooseHelper"], function (indexRoute, loginRoute, viewRoute, dataRoute/*server-route:,<%=nameCamel%>Route*/) {
 	/**
 	 * Module dependencies.
 	 */
@@ -41,7 +41,7 @@ requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/
 	app.use(app.router);
 
 // development only
-	if ('development' == app.get('env')) {
+	if ("development" == app.get("env")) {
 		app.use(express.errorHandler());
 	}
 
@@ -58,10 +58,10 @@ requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/
 
 	app.get("/" + packageJson.version + "/view/:name", viewRoute);
 	app.all("/" + packageJson.version + "/data/:action", dataRoute);
-	app.get('/*', indexRoute);
-	/*server-route:app.get('set_url_here', <%=nameCamel%>Route);<%='\n\t'%>*/
+	app.get("/*", indexRoute);
+	/*server-route:app.all("set_url_here", <%=nameCamel%>Route);<%='\n\t'%>*/
 
-	app.listen(app.get('port'), function () {
-		console.log('Express server listening on port ' + app.get('port'));
+	app.listen(app.get("port"), function () {
+		console.log("Express server listening on port " + app.get("port"));
 	});
 });
