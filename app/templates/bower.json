@@ -14,19 +14,19 @@
 		"tests"
 	],
 	"dependencies": {
-		"angular": "~1.2.9",
-		"angular-bootstrap": "~0.10.0",
-		"bootstrap": "~3.0.3",
-		"requirejs": "~2.1.10",
-		"angular-seed": "*",
-		"angular-ui-router": "~0.2.8",
-		"requirejs-domready": "~2.0.1",
-		"angular-translate": "~1.1.1",
-		"angular-translate-loader-url": "~0.1.5",
-		"linqjs-amd": "~0.1.0",
+		"requirejs": "*",
+		"requirejs-domready": "*",
+		"angular": "*",
+		"angular-resource": "*",
+		"angular-bootstrap": "*",
+		"angular-ui-router": "*",
+		"angular-translate": "*",
+		"angular-translate-loader-url": "*",
+		"angular-translate-loader-partial": "*",
 		"angularjs-modal-service": "*",
-		"angular-google-chart": "~0.0.8",
-		"angular-translate-loader-partial": "~0.2.0",
-		"ng-socket": "~0.1.1"
+		"angular-google-chart": "*",
+		"ng-socket": "*",
+		"linqjs-amd": "*",
+		"bootstrap": "*"
 	}
 }
