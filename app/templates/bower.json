@@ -28,5 +28,8 @@
 		"ng-socket": "*",
 		"linqjs-amd": "*",
 		"bootstrap": "*"
+	},
+	"resolutions": {
+		"angular-translate": "*"
 	}
 }

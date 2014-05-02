@@ -12,6 +12,7 @@ requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/
 	var path = require('path');
 	var stylus = require('stylus');
 	var util = require('util');
+	var busboy = require('connect-busboy');
 
 	var packageJson = require("./package.json");
 
@@ -26,8 +27,7 @@ requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/
 	app.use(express.favicon());
 	app.use(express.logger('dev'));
 	app.use(express.json());
-	app.use(express.urlencoded());
-	app.use(express.methodOverride());
+	app.use(busboy({ immediate: false }));
 	app.use(express.cookieParser("YourCookieKey"));
 	app.use(express.session({secret: "YourSessionKey"}));
 	app.use("/" + packageJson.version, stylus.middleware(path.join(__dirname, 'public')));
