@@ -6,21 +6,21 @@
 		"start": "node app.js"
 	},
 	"dependencies": {
-		"express": "3.4.7",
+		"express": "*",
 		"ejs": "*",
 		"stylus": "*",
-		"mongodb": "~1.3.23",
-		"passport": "~0.1.18",
-		"passport-http": "~0.2.2",
-		"passport-local": "~0.1.6",
-		"requirejs": "~2.1.10",
-		"mongoose": "~3.8.5",
-		"linq": "~3.0.4-beta",
-		"q": "~1.0.0",
-		"jeet": "~5.0.2",
-		"express.io": "~1.1.13",
-		"tedious": "^0.2.2",
-		"connect-busboy": "0.0.1"
+		"mongodb": "*",
+		"passport": "*",
+		"passport-http": "*",
+		"passport-local": "*",
+		"requirejs": "*",
+		"mongoose": "*",
+		"linq": "*",
+		"q": "*",
+		"jeet": "*",
+		"express.io": "*",
+		"tedious": "*",
+		"connect-busboy": "*"
 	},
 	"engines": {
 		"node": "1.10.x"

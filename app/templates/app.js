@@ -2,7 +2,8 @@ var requirejs = require("requirejs");
 
 requirejs.config({ deps: ["app"]})
 
-requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/data"/*server-route:,"routes/<%=nameCamel%>"*/, "models/mongooseHelper"], function (indexRoute, loginRoute, viewRoute, dataRoute/*server-route:,<%=nameCamel%>Route*/) {
+requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/data"/*server-route:,"routes/<%=nameCamel%>"*/, "models/mongooseHelper"], 
+	function (indexRoute, loginRoute, viewRoute, dataRoute/*server-route:,<%=nameCamel%>Route*/) {
 	/**
 	 * Module dependencies.
 	 */

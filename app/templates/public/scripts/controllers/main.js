@@ -1,5 +1,6 @@
 define("controllers/main", ["app"], function (app) {
 	return app.controller("main", ["$scope","$translate","$translatePartialLoader"/*,"$socket"*/, function ($scope,$translate,$translatePartialLoader/*,$socket*/) {
+		$translatePartialLoader.deletePart("main",true);
 		$translatePartialLoader.addPart("main");
 		$translate.refresh();
 
