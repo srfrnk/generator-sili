@@ -1,0 +1,30 @@
+@import mixins
+
+fx-contain(direction = row, wrap- = nowrap, justify = center, align-items = stretch, align-content = stretch)
+  cross-value display flex
+  cross flex-direction direction
+  cross flex-wrap wrap-
+  cross justify-content justify
+  cross 'align-items' align-items
+  cross 'align-content' align-content
+
+fx-item(basis = auto, grow = 0, shrink = 0, align-self = auto, order = 0)
+  cross flex-basis basis
+  cross flex-grow grow
+  cross flex-shrink shrink
+  cross 'align-self' align-self
+  cross 'order' order
+
+fx-row(justify = center, align-items = stretch, align-content = stretch)
+  fx-contain(direction:row, wrap-:nowrap, justify:justify, align-items:align-items, align-content:align-content)
+
+fx-rows(justify = center, align-items = stretch, align-content = stretch)
+  fx-contain(direction:row, wrap-:wrap, justify:justify, align-items:align-items, align-content:align-content)
+
+fx-column(justify = center, align-items = stretch, align-content = stretch)
+  fx-contain(direction:column, wrap-:nowrap, justify:justify, align-items:align-items, align-content:align-content)
+
+fx-columns(justify = center, align-items = stretch, align-content = stretch)
+  fx-contain(direction:column, wrap-:wrap, justify:justify, align-items:align-items, align-content:align-content)
+
+

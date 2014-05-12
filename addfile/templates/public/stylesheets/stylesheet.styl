@@ -1,4 +1,9 @@
-@import "jeet"
+@import mixins
+@import flex
 
-#<%=nameDash%>
-	/* In most cases your should put all content under this for encapsulation... */
+#<%=nameDash%>-page
+	fx-item()
+	fx-column()
+	.main-cnt
+		fx-item()
+		fx-row()

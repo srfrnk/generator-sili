@@ -1,4 +1,5 @@
 {
+	pageTitle:"<%=fullPath%>",
 	"text1":"Translated Text1",
 	"text2":"Translated Text2"
 }

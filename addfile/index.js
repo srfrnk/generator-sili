@@ -32,10 +32,10 @@ AddfileGenerator.prototype.getSide = function getSide() {
 				type: 'list',
 				name: 'side',
 				message: 'Server or Client side?',
-				default: 'server',
+				default: 'client',
 				choices: [
-					{value: 'server', name: 'Server'},
-					{value: 'client', name: 'Client'}
+					{value: 'client', name: 'Client'},
+					{value: 'server', name: 'Server'}
 				]
 			}
 		];
@@ -63,6 +63,7 @@ AddfileGenerator.prototype.getSpec = function getSpec() {
 						{ value: 'model', name: 'Model'}
 					] :
 					[
+						{ value: 'full', name: 'Full Client Route: State -> Controller -> Template -> Stylesheet'},
 						{ value: 'full-stack', name: 'Full Stack: State -> Controller -> View -> Stylesheet'},
 						{ value: 'state', name: 'State'},
 						{ value: 'controller', name: 'Controller'},
@@ -70,6 +71,7 @@ AddfileGenerator.prototype.getSpec = function getSpec() {
 						{ value: 'directive', name: 'Directive'},
 						{ value: 'filter', name: 'Filter'},
 						{ value: 'i18n', name: 'Internationalization'},
+						{ value: 'template', name: 'Template'},
 						{ value: 'stylus', name: 'Stylus'}
 					]
 			}
@@ -174,6 +176,20 @@ AddfileGenerator.prototype._actions = {
 			cb();
 		}.bind(this));
 	},
+	"client-full": function (cb) {
+		this._runAction("client-state", function () {
+			this._runAction("client-controller", function () {
+				this._runAction("client-template", function () {
+					this._runAction("client-stylus", function () {
+						this.language="en-US";
+						this._runAction("client-i18n", function () {
+							cb();
+						}.bind(this));
+					}.bind(this));
+				}.bind(this));
+			}.bind(this));
+		}.bind(this));
+	},
 	"client-full-stack": function (cb) {
 		this._runAction("client-state", function () {
 			this._runAction("client-controller", function () {
@@ -243,9 +259,13 @@ AddfileGenerator.prototype._actions = {
 			createFile();
 		}
 	},
+	"client-template": function (cb) {
+		this._getFile("public/templates/template.html", "public/templates/" + this.fullPath + ".html", function () {
+			cb();
+		}.bind(this));
+	},
 	"client-stylus": function (cb) {
 		this._getFile("public/stylesheets/stylesheet.styl", "public/stylesheets/" + this.fullPath + ".styl", function () {
-			this._updateFile("views/index.ejs", this.action);
 			cb();
 		}.bind(this));
 	}

@@ -1,0 +1,16 @@
+cross(prop, value...)
+  -webkit-{prop} value
+  -moz-{prop} value
+  -ms-{prop} value
+  -o-{prop} value
+  {prop} value
+
+cross-value(prop, value...)
+  {prop} -webkit-+value
+  {prop} -moz-+value
+  {prop} -ms-+value
+  {prop} -o-+value
+  {prop} value
+
+span(count,total)
+  floor(count/total*100%)
