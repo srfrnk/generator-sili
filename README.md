@@ -11,6 +11,12 @@ A single-click-to-get-started - skeleton web app with all you need... NodeJS , E
 * [Component](http://component.io/) - use npm: $ npm install -g component
 * [Yeoman](http://yeoman.io/) - use npm: $ npm install -g yo
 
+--- On Ubuntu (not yet working... but working on it :)
+1) Follow [These instruction to install NodeJS](http://askubuntu.com/questions/49390/how-do-i-install-the-latest-version-of-node-js)
+2) Add 'sudo' to cmdline to install bower,component,yeoman etc...
+3) Install git - $ sudo apt-get install git
+4) Don't run sili yet... it fails... trying to find out why.... will update soon...
+
 ## Installation(using NPM)
 * $ npm install -g generator-sili
 
