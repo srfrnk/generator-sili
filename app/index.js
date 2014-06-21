@@ -17,7 +17,7 @@ var SiLiGenerator = module.exports = function SiLiGenerator(args, options, confi
 util.inherits(SiLiGenerator, yeoman.generators.Base);
 
 SiLiGenerator.prototype.app = function app() {
-	this.projectName=path.basename(this.dest._base);
+	this.projectName=this.appname;
 	this.webAppVersion=packageJson.version;
 	this.directory("", "");
 };
