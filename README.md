@@ -5,13 +5,16 @@ A generator for [Yeoman](http://yeoman.io) to generate [WebApp](https://github.c
 
 A single-click-to-get-started - skeleton web app with all you need... NodeJS , ExpressJS, AngularJS , MongoDB and all the other goodies...
 
-## Prerequisites
+## Prerequisites (Windows)
 * [NodeJS](http://nodejs.org/)
 * [Bower](http://bower.io/) - use npm: npm install -g bower
 * [Component](http://component.io/) - (optional) -use npm: npm install -g component
 * [Yeoman](http://yeoman.io/) - use npm: npm install -g yo
+* [Git](http://msysgit.github.io/)
 
-### On **Ubuntu** (got it all working... if you have any issues please contact me :)
+## Prerequisites (Ubunto - although might work for all other linux dists)
+Note: Just got it all working... if you have any issues please contact me :)
+
 * Follow [These instruction to install NodeJS](http://askubuntu.com/questions/49390/how-do-i-install-the-latest-version-of-node-js) or do these next 4 steps:
 * $ sudo add-apt-repository ppa:chris-lea/node.js
 * $ sudo apt-get update
