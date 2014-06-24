@@ -13,18 +13,25 @@ var AddfileGenerator = module.exports = function AddfileGenerator(args, options,
 	this.argument('spec', { type: String, required: false });
 	this.argument('name', { type: String, required: false });
 
-	if (this.side == 's') {
-		this.side = 'server';
+    this.siliSpecs={
+        side:this.side,
+        spec:this.spec,
+        name:this.name
+    };
+
+	if (this.siliSpecs.side == 's') {
+		this.siliSpecs.side = 'server';
 	}
-	else if (this.side == 'c') {
-		this.side = 'client';
+	else if (this.siliSpecs.side == 'c') {
+		this.siliSpecs.side = 'client';
 	}
 };
 
 util.inherits(AddfileGenerator, yeoman.generators.Base);
 
 AddfileGenerator.prototype.getSide = function getSide() {
-	if (!this.side) {
+    console.log("getSide");
+	if (!this.siliSpecs.side) {
 		var cb = this.async();
 
 		var prompts = [
@@ -41,14 +48,15 @@ AddfileGenerator.prototype.getSide = function getSide() {
 		];
 
 		this.prompt(prompts, function (props) {
-			this.side = props.side;
+			this.siliSpecs.side = props.side;
 			cb();
 		}.bind(this));
 	}
 }
 
 AddfileGenerator.prototype.getSpec = function getSpec() {
-	if (!this.spec) {
+    console.log("getSpec");
+	if (!this.siliSpecs.spec) {
 		var cb = this.async();
 
 		var prompts = [
@@ -77,14 +85,15 @@ AddfileGenerator.prototype.getSpec = function getSpec() {
 			}
 		];
 		this.prompt(prompts, function (props) {
-			this.spec = props.spec;
+			this.siliSpecs.spec = props.spec;
 			cb();
 		}.bind(this));
 	}
 }
 
 AddfileGenerator.prototype.getName = function getName() {
-	if (!this.name) {
+    console.log("getName");
+	if (!this.siliSpecs.name) {
 		var cb = this.async();
 
 		var prompts = [
@@ -97,45 +106,46 @@ AddfileGenerator.prototype.getName = function getName() {
 		];
 
 		this.prompt(prompts, function (props) {
-			this.name = props.name;
+			this.siliSpecs.name = props.name;
 			cb();
 		}.bind(this));
 	}
 }
 
 AddfileGenerator.prototype.setParams = function setParams() {
-	this.action = this.side + '-' + this.spec;
+    console.log("setParams");
+	this.siliSpecs.action = this.siliSpecs.side + '-' + this.siliSpecs.spec;
 
-	this.path = path.dirname(this.name);
-	this.name = path.basename(this.name, path.extname(this.name));
+	this.siliSpecs.path = path.dirname(this.siliSpecs.name);
+	this.siliSpecs.name = path.basename(this.siliSpecs.name, path.extname(this.siliSpecs.name));
 
-	var name = changeCase.sentenceCase(this.name);
-	this.nameLower = changeCase.lowerCase(this.name);
-	this.nameUpper = changeCase.upperCase(this.name);
-	this.nameCamel = changeCase.camelCase(name);
-	this.nameCapital = changeCase.pascalCase(name);
-	this.nameDash = changeCase.paramCase(name);
+	var name = changeCase.sentenceCase(this.siliSpecs.name);
+	this.siliSpecs.nameLower = changeCase.lowerCase(this.siliSpecs.name);
+	this.siliSpecs.nameUpper = changeCase.upperCase(this.siliSpecs.name);
+	this.siliSpecs.nameCamel = changeCase.camelCase(name);
+	this.siliSpecs.nameCapital = changeCase.pascalCase(name);
+	this.siliSpecs.nameDash = changeCase.paramCase(name);
 
-	this.fullPath = path.join(this.path, this.nameCamel);
+	this.siliSpecs.fullPath = path.join(this.siliSpecs.path, this.siliSpecs.nameCamel);
 };
 
 AddfileGenerator.prototype.addFile = function addFile() {
 	var cb = this.async();
-	this._runAction(this.action, cb);
+	this._runAction(this.siliSpecs.action, cb);
 };
 
 AddfileGenerator.prototype._runAction = function _runAction(action,cb) {
-	var prevAction=this.action;
-	this.action=action;
+	var prevAction=this.siliSpecs.action;
+	this.siliSpecs.action=action;
 	this._actions[action].call(this, function () {
-		this.action=prevAction;
+		this.siliSpecs.action=prevAction;
 		cb();
 	}.bind(this));
 };
 
 AddfileGenerator.prototype._getFile = function _getFile(src, destination, cb) {
 	console.log('Building ', destination, '...');
-	var body = this.engine(this.read(src), this);
+	var body = this.engine(this.read(src), this.siliSpecs);
 	this.write(destination, body);
 	if (!!cb) cb();
 };
@@ -151,7 +161,7 @@ AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
 	var content = this.readFileAsString(filepath);
 	var newContent = content.replace(regexp[ext], function (match, capture, idx, all) {
 		capture = capture.replace(/\[\[%/g, "<%");
-		var newContent = this.engine(capture, this);
+		var newContent = this.engine(capture, this.siliSpecs);
 		newContent=newContent.replace(/<\[%/g, "<%");
 		return newContent + match;
 	}.bind(this));
@@ -161,18 +171,18 @@ AddfileGenerator.prototype._updateFile = function _getFile(filepath, actionId) {
 
 AddfileGenerator.prototype._actions = {
 	"server-route": function (cb) {
-		this._getFile("routes/route.js", "routes/" + this.fullPath + ".js", function () {
-			this._updateFile("app.js", this.action);
+		this._getFile("routes/route.js", "routes/" + this.siliSpecs.fullPath + ".js", function () {
+			this._updateFile("app.js", this.siliSpecs.action);
 			cb();
 		}.bind(this));
 	},
 	"server-view": function (cb) {
-		this._getFile("views/view.ejs", "views/" + this.fullPath + ".ejs", function () {
+		this._getFile("views/view.ejs", "views/" + this.siliSpecs.fullPath + ".ejs", function () {
 			cb();
 		}.bind(this));
 	},
 	"server-model": function (cb) {
-		this._getFile("models/model.js", "models/" + this.fullPath + ".js", function () {
+		this._getFile("models/model.js", "models/" + this.siliSpecs.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
@@ -181,7 +191,7 @@ AddfileGenerator.prototype._actions = {
 			this._runAction("client-controller", function () {
 				this._runAction("client-template", function () {
 					this._runAction("client-stylus", function () {
-						this.language="en-US";
+						this.siliSpecs.language="en-US";
 						this._runAction("client-i18n", function () {
 							cb();
 						}.bind(this));
@@ -195,7 +205,7 @@ AddfileGenerator.prototype._actions = {
 			this._runAction("client-controller", function () {
 				this._runAction("server-view", function () {
 					this._runAction("client-stylus", function () {
-						this.language="en-US";
+						this.siliSpecs.language="en-US";
 						this._runAction("client-i18n", function () {
 							cb();
 						}.bind(this));
@@ -205,28 +215,28 @@ AddfileGenerator.prototype._actions = {
 		}.bind(this));
 	},
 	"client-state": function (cb) {
-		this._getFile("public/scripts/states/state.js", "public/scripts/states/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/states/state.js", "public/scripts/states/" + this.siliSpecs.fullPath + ".js", function () {
 			this._updateFile("public/scripts/config.js", this.action);
 			cb();
 		}.bind(this));
 	},
 	"client-controller": function (cb) {
-		this._getFile("public/scripts/controllers/controller.js", "public/scripts/controllers/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/controllers/controller.js", "public/scripts/controllers/" + this.siliSpecs.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-service": function (cb) {
-		this._getFile("public/scripts/services/service.js", "public/scripts/services/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/services/service.js", "public/scripts/services/" + this.siliSpecs.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-directive": function (cb) {
-		this._getFile("public/scripts/directives/directive.js", "public/scripts/directives/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/directives/directive.js", "public/scripts/directives/" + this.siliSpecs.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-filter": function (cb) {
-		this._getFile("public/scripts/filters/filter.js", "public/scripts/filters/" + this.fullPath + ".js", function () {
+		this._getFile("public/scripts/filters/filter.js", "public/scripts/filters/" + this.siliSpecs.fullPath + ".js", function () {
 			cb();
 		}.bind(this));
 	},
@@ -244,14 +254,14 @@ AddfileGenerator.prototype._actions = {
 			}
 		];
 		var createFile = function() {
-			this._getFile("public/i18n/i18n.json", "public/i18n/" + this.language + "/" + this.fullPath + ".json", function () {
+			this._getFile("public/i18n/i18n.json", "public/i18n/" + this.siliSpecs.language + "/" + this.siliSpecs.fullPath + ".json", function () {
 				cb();
 			}.bind(this))
 		}.bind(this);
 
-		if (!this.language) {
+		if (!this.siliSpecs.language) {
 			this.prompt(prompts, function (props) {
-				this.language = props.language;
+				this.siliSpecs.language = props.language;
 				createFile();
 			}.bind(this));
 		}
@@ -260,12 +270,12 @@ AddfileGenerator.prototype._actions = {
 		}
 	},
 	"client-template": function (cb) {
-		this._getFile("public/templates/template.html", "public/templates/" + this.fullPath + ".html", function () {
+		this._getFile("public/templates/template.html", "public/templates/" + this.siliSpecs.fullPath + ".html", function () {
 			cb();
 		}.bind(this));
 	},
 	"client-stylus": function (cb) {
-		this._getFile("public/stylesheets/stylesheet.styl", "public/stylesheets/" + this.fullPath + ".styl", function () {
+		this._getFile("public/stylesheets/stylesheet.styl", "public/stylesheets/" + this.siliSpecs.fullPath + ".styl", function () {
 			cb();
 		}.bind(this));
 	}
