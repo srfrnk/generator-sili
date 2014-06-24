@@ -239,7 +239,11 @@
       <created>1403580469429</created>
       <updated>1403580469429</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=" + version bump&#10; + jeet file moved&#10; + appname yo prop used&#10; + fix for :addfile">
+      <created>1403580483060</created>
+      <updated>1403580483060</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
