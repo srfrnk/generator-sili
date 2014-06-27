@@ -7,7 +7,7 @@ require("requirejs").define("models/<%=nameCamel%>", ["models/mongooseHelper"], 
 			comments: String,
 			createdAt: Date
 		});
-		<%=nameCapital%>Model = mongooseHelper.mongoose.model("<%=nameCapital%>Model",<%=nameCamel%>Schema);
+		<%=nameCapital%>Model = mongooseHelper.mongoose.model("<%=nameCamel%>",<%=nameCamel%>Schema);
 		 <%=nameCamel%>Model.<%=nameCapital%>Model = <%=nameCapital%>Model;
 	});
 	return <%=nameCamel%>Model;

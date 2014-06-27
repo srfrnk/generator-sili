@@ -64,7 +64,7 @@ AddfileGenerator.prototype.getSpec = function getSpec() {
 				type: 'list',
 				name: 'spec',
 				message: 'File type:',
-				choices: this.side == 'server' ?
+				choices: this.siliSpecs.side == 'server' ?
 					[
 						{ value: 'route', name: 'Route'},
 						{ value: 'view', name: 'View'},
