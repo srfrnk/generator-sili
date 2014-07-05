@@ -2,8 +2,8 @@ var requirejs = require("requirejs");
 
 requirejs.config({ deps: ["app"]})
 
-requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/data"/*server-route:,"routes/<%=nameCamel%>"*/, "models/mongooseHelper"], 
-	function (indexRoute, loginRoute, viewRoute, dataRoute/*server-route:,<%=nameCamel%>Route*/) {
+requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/data"/*server-route:,"routes/<%=nameCamel%>"*//*server-middleware:,"middleware/<%=nameCamel%>"*/, "models/mongooseHelper"],
+	function (indexRoute, loginRoute, viewRoute, dataRoute/*server-route:,<%=nameCamel%>Route*//*server-middleware:,<%=nameCamel%>*/) {
 	/**
 	 * Module dependencies.
 	 */
@@ -40,6 +40,8 @@ requirejs.define("app", ["routes/index", "routes/login", "routes/view", "routes/
 		next();
 	});
 	app.use(app.router);
+
+    /*server-middleware:app.use("/",<%=nameCamel%>);<%='\n\t'%>*/
 
 // development only
 	if ("development" == app.get("env")) {

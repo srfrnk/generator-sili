@@ -68,7 +68,8 @@ AddfileGenerator.prototype.getSpec = function getSpec() {
 					[
 						{ value: 'route', name: 'Route'},
 						{ value: 'view', name: 'View'},
-						{ value: 'model', name: 'Model'}
+						{ value: 'model', name: 'Model'},
+						{ value: 'middleware', name: 'Middleware'}
 					] :
 					[
 						{ value: 'full', name: 'Full Client Route: State -> Controller -> Template -> Stylesheet'},
@@ -183,6 +184,12 @@ AddfileGenerator.prototype._actions = {
 	},
 	"server-model": function (cb) {
 		this._getFile("models/model.js", "models/" + this.siliSpecs.fullPath + ".js", function () {
+			cb();
+		}.bind(this));
+	},
+	"server-middleware": function (cb) {
+		this._getFile("middleware/middleware.js", "middleware/" + this.siliSpecs.fullPath + ".js", function () {
+            this._updateFile("app.js", this.siliSpecs.action);
 			cb();
 		}.bind(this));
 	},
