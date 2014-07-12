@@ -1,6 +1,6 @@
 {
   "name": "generator-sili",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "Yeoman generator - Silver Lining (SiLi) - A single-click-to-get-started - skeleton web app with all you need...",
   "keywords": [
     "yeoman-generator",

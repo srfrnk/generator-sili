@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title ng-bind="'pageTitle'|translate:pageTitleParams">Default Page Title</title>
-    <link rel="stylesheet" href="resourceRoot/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="<%=resourceRoot%>/bootstrap/dist/css/bootstrap.css"/>
 
     <link rel="stylesheet" href="<%=resourceRoot%>/stylesheets/global.css"/>
     <link rel="stylesheet" href="<%=resourceRoot%>/stylesheets/main.css"/>
@@ -32,12 +32,6 @@
 </head>
 <body>
 <div class="page ng-cloak">
-    <div class="menu">
-        <ul>
-            <li><a ui-sref="main">{{"headerMain"|translate}}</a></li>
-            <li><a ui-sref="other">{{"headerOther"|translate}}</a></li>
-        </ul>
-    </div>
     <div class="content" ui-view></div>
 </div>
 </body>
