@@ -7,6 +7,15 @@ define("states/<%=nameCamel%>", ["app", "controllers/<%=nameCamel%>"], function 
 			//  template: "<div></div>",
 			//  templateProvider: function ($stateParams) { },
 			templateUrl: __webApp_ResourceRoot+"/templates/<%=nameCamel%>.html",
+            onEnter: ["$state", "$translate", "$translatePartialLoader", function ($state, $translate, $translatePartialLoader) {
+                $translatePartialLoader.deletePart("<%=nameCamel%>", true);
+                $translatePartialLoader.addPart("<%=nameCamel%>");
+                $translate.refresh();
+            }],
+            onExit: ["$state", "$translate", "$translatePartialLoader", function ($state, $translate, $translatePartialLoader) {
+                //$translatePartialLoader.deletePart("<%=nameCamel%>", true);
+                $translate.refresh();
+            }],
 			controller: "<%=nameCamel%>"/*,*/
 //			views: {
 //				"view1@": {
