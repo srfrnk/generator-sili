@@ -1,4 +1,5 @@
 define("filters/<%=nameCamel%>", ["app"], function (app) {
+    "use strict";
     /*
         Usage:
             {{ input | filter-name:arg1:arg2 }}

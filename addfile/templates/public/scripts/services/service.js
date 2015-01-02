@@ -1,4 +1,5 @@
 define("services/<%=nameCamel%>", ["app"], function (app) {
+    "use strict";
 	return app.factory("<%=nameCamel%>", ["$resource",
 		function ($resource) {
 			var service = $resource("/data_url/:action", {}, {

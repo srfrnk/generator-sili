@@ -1,4 +1,5 @@
 define("app", [], function () {
+    "use strict";
 	var app = angular.module("app", ["ngResource", "ui.router", "ui.bootstrap", "pascalprecht.translate","fundoo.services","googlechart","ngSocket"]);
 	app.config(["$locationProvider","$translateProvider","$translatePartialLoaderProvider",function ($locationProvider,$translateProvider,$translatePartialLoaderProvider) {
 		$locationProvider.html5Mode(true);

@@ -1,4 +1,5 @@
 require("requirejs").define("models/mongooseHelper", [], function () {
+        "use strict";
 		var Q = require("q");
 		var mongoose = require('mongoose');
 		var connected = Q.defer();

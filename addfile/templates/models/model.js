@@ -1,5 +1,6 @@
-require("requirejs").define("models/<%=nameCamel%>", ["models/mongooseHelper"], function (mongooseHelper) {
-	var <%=nameCamel%>Schema,<%=nameCapital%>Model,<%=nameCamel%>Model={};
+require("requirejs").define("models/<%=nameCamel%>", ["models/mongooseHelper","models/elasticsearchHelper"], function (mongooseHelper,elasticsearchHelper) {
+    "use strict";
+    var <%=nameCamel%>Schema,<%=nameCapital%>Model,<%=nameCamel%>Model={};
 	mongooseHelper.connected.then(function () {
         try {
 		<%=nameCamel%>Schema = mongooseHelper.mongoose.Schema({
@@ -8,6 +9,7 @@ require("requirejs").define("models/<%=nameCamel%>", ["models/mongooseHelper"], 
 			comments: String,
 			createdAt: Date
 		});
+        elasticsearchHelper.mongoose(<%=nameCamel%>Schema);
 		<%=nameCapital%>Model = mongooseHelper.mongoose.model("<%=nameCamel%>",<%=nameCamel%>Schema);
 		 <%=nameCamel%>Model.<%=nameCapital%>Model = <%=nameCapital%>Model;
         }

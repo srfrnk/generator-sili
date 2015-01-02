@@ -1,4 +1,5 @@
 require("requirejs").define("middleware/<%=nameCamel%>", [], function () {
+    "use strict";
     return function (req, res, next) {
 //        if(ok) {
         next();

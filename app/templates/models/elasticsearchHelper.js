@@ -1,6 +1,8 @@
 require("requirejs").define("models/elasticsearchHelper", [], function () {
+        "use strict";
 		var Q = require("q");
 		var ElasticSearchClient = require("elasticsearchclient");
+        var mongoosastic = require('mongoosastic');
 
 		var serverOptions = JSON.parse(process.env.ES_SERVER_OPTIONS || "null") || {
 			host: "",
@@ -16,6 +18,23 @@ require("requirejs").define("models/elasticsearchHelper", [], function () {
 
 		return {
 			client: elasticSearchClient,
+            mongoosastic: mongoosastic,
+            mongoose: function (schema, options) {
+                options = options || {};
+                schema.plugin(mongoosastic, {
+                    host: serverOptions.host,
+                    port: serverOptions.port,
+                    auth: serverOptions.auth,
+                    protocol: serverOptions.secure ? "https" : "http",
+                    hydrate: options.hydrate,
+                    hydrateOptions: options.hydrateOptions === undefined ? undefined : {
+                        lean: options.hydrateOptions.lean,
+                        sort: options.hydrateOptions.sort,
+                        select: options.hydrateOptions.select
+                    },
+                    bulk: options.bulk
+                });
+            },
 			search: function (index, type, query,from,size) {
 				var defer = Q.defer();
 				elasticSearchClient.search(index, type, {

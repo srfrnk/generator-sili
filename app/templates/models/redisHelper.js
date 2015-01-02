@@ -1,4 +1,5 @@
 require("requirejs").define("models/redisHelper", [], function () {
+    "use strict";
 	var Q = require("q");
 	var redis = require("redis");
 	var connectionOptions = JSON.parse(process.env.REDIS_CONNECTION_OPTIONS);

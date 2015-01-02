@@ -1,4 +1,5 @@
 define("states/<%=nameCamel%>", ["app", "controllers/<%=nameCamel%>"], function (app) {
+    "use strict";
 	return app.config(["$stateProvider", function ($stateProvider) {
 		$stateProvider.state("<%=nameCamel%>", {
 //			"abstract": true,

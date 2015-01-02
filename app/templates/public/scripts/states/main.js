@@ -1,4 +1,5 @@
 define("states/main", ["app","controllers/main"], function (app) {
+    "use strict";
 	return app.config(["$stateProvider", function ($stateProvider) {
 		$stateProvider.state("main", {
 			url: "/",

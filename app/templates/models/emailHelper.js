@@ -1,4 +1,5 @@
 require("requirejs").define("models/emailHelper", [], function () {
+    "use strict";
 	var Q = require("q");
 	var emailjs = require("emailjs");
 	var ejs = require('ejs');

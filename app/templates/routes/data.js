@@ -1,4 +1,5 @@
 require("requirejs").define("routes/data", ["models/mongooseHelper"], function (mongooseHelper) {
+        "use strict";
 		var actions = {
 			create: function (req, res) {
 				/*var model = new myModel.MyModel(req.body);

@@ -15,6 +15,7 @@
 		"passport-local": "*",
 		"requirejs": "*",
 		"mongoose": "*",
+		"mongoosastic": "*",
 		"linq": "*",
 		"q": "*",
 		"jeet": "*",

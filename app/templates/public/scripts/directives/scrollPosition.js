@@ -1,4 +1,5 @@
 define("directives/scrollPosition", ["app"], function (app) {
+    "use strict";
 	app.directive('scrollPosition', ["$window",function ($window) {
 		return {
 			scope: {

@@ -1,4 +1,5 @@
 define("controllers/main", ["app"], function (app) {
+    "use strict";
 	return app.controller("main", ["$scope","$translate","$translatePartialLoader"/*,"$socket"*/, function ($scope,$translate,$translatePartialLoader/*,$socket*/) {
 		$translatePartialLoader.deletePart("main",true);
 		$translatePartialLoader.addPart("main");

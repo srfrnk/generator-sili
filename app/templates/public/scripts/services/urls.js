@@ -1,4 +1,5 @@
 define("services/urls", ["app"], function (app) {
+    "use strict";
 	return app.factory("urls", ["$rootScope",
 		function ($rootScope) {
 			var urls = {

@@ -1,4 +1,5 @@
 require("requirejs").define("models/sqlServerHelper", [], function () {
+    "use strict";
 	var Q = require("q");
 	var Connection = require('tedious').Connection;
 	var Request = require('tedious').Request;

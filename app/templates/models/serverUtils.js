@@ -1,4 +1,5 @@
 require("requirejs").define("models/serverUtils", [], function () {
+    "use strict";
     return {
         getClientIp: function (req) {
             // snippet taken from http://catapulty.tumblr.com/post/8303749793/heroku-and-node-js-how-to-get-the-client-ip-address

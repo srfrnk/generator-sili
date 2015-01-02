@@ -1,4 +1,5 @@
 define("directives/stylesheet", ["app","services/urls"], function (app) {
+    "use strict";
 	return app.directive('stylesheet', ["urls",function (urls) {
 		return {
 			restrict: "E",

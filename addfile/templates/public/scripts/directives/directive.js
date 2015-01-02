@@ -1,4 +1,5 @@
 define("directives/<%=nameCamel%>", ["app"], function (app) {
+    "use strict";
 	return app.directive('<%=nameCamel%>', [function () {
 		return {
 //			restrict: "EA",
